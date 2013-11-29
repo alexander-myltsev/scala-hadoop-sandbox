@@ -36,4 +36,5 @@ out/
 
 # Other
 *.pyc
-tmp/
+*part-*
+*_SUCCESS*
