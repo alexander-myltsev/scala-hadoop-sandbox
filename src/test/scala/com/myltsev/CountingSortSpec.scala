@@ -25,16 +25,24 @@ class CountingSortSpec extends Specification {
       val jOutput: JList[MRPair[Bulk, NullWritable]] =
         expectedOutput.map(x ⇒ new MRPair(Bulk(x._1, x._2), NullWritable.get))
 
-      mapDriver.withAll(jInput).withAllOutput(jOutput).runTest()
+      mapDriver.withAll(jInput).withAllOutput(jOutput).runTest(false)
     }
   }
 
   "mapper" should {
-    "work correctly" in {
-      Input() mustBeMappedTo List()
+    "work correctly for single input" in {
       Input("0") mustBeMappedTo List((BulkType.Zero, 1))
+    }
+
+    "sort two ints" in {
       Input("1", "-1") mustBeMappedTo List((BulkType.MinusOne, 1), (BulkType.PlusOne, 1))
+    }
+
+    "sort three separate ints" in {
       Input("0", "1", "-1") mustBeMappedTo List((BulkType.MinusOne, 1), (BulkType.Zero, 1), (BulkType.PlusOne, 1))
+    }
+
+    "sort two repeating ints" in {
       Input("1", "1", "-1") mustBeMappedTo List((BulkType.MinusOne, 1), (BulkType.PlusOne, 2))
     }
   }

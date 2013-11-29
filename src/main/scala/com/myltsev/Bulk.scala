@@ -1,6 +1,12 @@
 package com.myltsev
 
+import org.apache.hadoop.conf.Configured
+import org.apache.hadoop.util.Tool
+import org.apache.hadoop.mapred._
 import org.apache.hadoop.io._
+import org.apache.hadoop.fs.Path
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.io.{ DataOutput, DataInput }
 
 object BulkType extends Enumeration {
@@ -15,13 +21,32 @@ class Bulk extends WritableComparable[Bulk] {
   var count = 0L
   var tp = BulkType.Undefined
 
-  def readFields(in: DataInput) = ???
+  def readFields(in: DataInput) = {
+    val i = in.readInt()
+    tp = i match {
+      case x if x == BulkType.MinusOne.id ⇒ BulkType.MinusOne
+      case x if x == BulkType.Zero.id     ⇒ BulkType.Zero
+      case x if x == BulkType.PlusOne.id  ⇒ BulkType.PlusOne
+      case _                              ⇒ ???
+    }
+    count = in.readLong()
+  }
 
-  def write(out: DataOutput) = ???
+  def write(out: DataOutput) = {
+    out.writeInt(tp.id)
+    out.writeLong(count)
+  }
 
-  def compareTo(b: Bulk): Int = ???
+  def compareTo(b: Bulk): Int = (tp, b.tp) match {
+    case (BulkType.Undefined, _) | (_, BulkType.Undefined) ⇒ ???
+    case (thisTp, thatTp) ⇒
+      val tpComp = thisTp.compareTo(thatTp)
+      if (tpComp == 0) count.compareTo(b.count)
+      else tpComp
+  }
 
-  override def hashCode() = tp.hashCode + count.hashCode * 17
+  override def hashCode() =
+    tp.hashCode + count.hashCode * 17
 
   override def equals(o: Any) = o match {
     case (b: Bulk) ⇒ tp == b.tp && count == b.count
