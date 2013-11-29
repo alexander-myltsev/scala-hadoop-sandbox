@@ -15,6 +15,6 @@ resolvers ++= Seq(
 libraryDependencies ++= Seq(
   "org.scala-lang"    % "scala-compiler"  % "2.10.2",
   "org.apache.hadoop" % "hadoop-core"     % "1.1.2",
-  "org.apache.mrunit" % "mrunit"          % "1.0.0"    % "test" classifier "hadoop1",
+  "org.apache.mrunit" % "mrunit"          % "1.0.0"   % "test" classifier "hadoop1",
   "org.specs2"        %% "specs2"         % "1.14"    % "test"
 )
