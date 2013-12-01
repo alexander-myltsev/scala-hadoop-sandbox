@@ -24,3 +24,5 @@ libraryDependencies ++= Seq(
   "com.twitter"    %% "algebird-core"  % "0.2.0",
   "com.twitter"    %% "algebird-util"  % "0.2.0"
 )
+
+mainClass in (Compile,run) := Some("com.myltsev.raw.Driver")

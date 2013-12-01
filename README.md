@@ -6,8 +6,8 @@ Task
 
 The task is to sort (ascending order) an array of numbers from range [-1, 0, 1] using Hadoop MapReduce.
 
-Solution
---------
+Solution (raw Hadoop)
+---------------------
 
 Test it: `sbt test`
 
@@ -17,6 +17,14 @@ Args are optional. Default values are `data/in/data_sample.txt` and `data/out`. 
 
 Produce jar: `sbt assembly`
 
-Then run it on a Hadoop `hadoop jar target/scala-hadoop-sandbox-0.1.jar /tmp/in/data.txt /tmp/out`
+Then run it on a Hadoop: `hadoop jar target/scala-hadoop-sandbox-0.1.jar com.myltsev.raw.Driver /tmp/in/data.txt /tmp/out`
+
+Solution ([Twitter Scalding](https://github.com/twitter/scalding))
+------------------------------------------------------------------
+
+Run it locally: `sbt "run-main com.myltsev.scalding.CountingSort"`
+
+Result should be in "data/out/numbers-sorted.txt"
+
 
 Have fun!

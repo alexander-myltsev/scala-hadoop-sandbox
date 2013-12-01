@@ -17,7 +17,8 @@ excludedJars in assembly <<= (fullClasspath in assembly) map { cp =>
     "janino-2.5.16.jar", // Janino includes a broken signature, and is not needed anyway
     "commons-beanutils-core-1.8.0.jar", // Clash with each other and with commons-collections
     "commons-beanutils-1.7.0.jar",
-    "hadoop-core-1.1.2.jar"
+    "hadoop-core-1.1.2.jar",
+    "asm-4.0.jar"
   )
   cp filter { jar => excludes(jar.data.getName) }
 }
