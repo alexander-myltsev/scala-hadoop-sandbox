@@ -16,5 +16,11 @@ libraryDependencies ++= Seq(
   "org.scala-lang"    % "scala-compiler"  % "2.10.2",
   "org.apache.hadoop" % "hadoop-core"     % "1.1.2",
   "org.apache.mrunit" % "mrunit"          % "1.0.0"   % "test" classifier "hadoop1",
-  "org.specs2"        %% "specs2"         % "1.14"    % "test"
+  "org.specs2"        %% "specs2"         % "1.14"    % "test",
+  // scalding
+  "com.twitter"    %% "scalding-args"  % "0.9.0rc4",
+  "com.twitter"    %% "scalding-core"  % "0.9.0rc4",
+  "com.twitter"    %% "scalding-date"  % "0.9.0rc4",
+  "com.twitter"    %% "algebird-core"  % "0.2.0",
+  "com.twitter"    %% "algebird-util"  % "0.2.0"
 )
