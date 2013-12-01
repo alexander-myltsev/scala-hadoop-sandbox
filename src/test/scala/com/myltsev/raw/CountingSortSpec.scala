@@ -1,4 +1,4 @@
-package com.myltsev
+package com.myltsev.raw
 
 import org.specs2.mutable.Specification
 import java.util.{ List ⇒ JList }

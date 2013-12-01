@@ -1,4 +1,4 @@
-package com.myltsev
+package com.myltsev.raw
 
 import org.apache.hadoop.util.ToolRunner
 import org.apache.hadoop.conf.Configuration

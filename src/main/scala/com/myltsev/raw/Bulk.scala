@@ -1,12 +1,6 @@
-package com.myltsev
+package com.myltsev.raw
 
-import org.apache.hadoop.conf.Configured
-import org.apache.hadoop.util.Tool
-import org.apache.hadoop.mapred._
 import org.apache.hadoop.io._
-import org.apache.hadoop.fs.Path
-import java.text.SimpleDateFormat
-import java.util.Date
 import java.io.{ DataOutput, DataInput }
 
 object BulkType extends Enumeration {
@@ -22,8 +16,7 @@ class Bulk extends WritableComparable[Bulk] {
   var tp = BulkType.Undefined
 
   def readFields(in: DataInput) = {
-    val i = in.readInt()
-    tp = i match {
+    tp = in.readInt() match {
       case x if x == BulkType.MinusOne.id ⇒ BulkType.MinusOne
       case x if x == BulkType.Zero.id     ⇒ BulkType.Zero
       case x if x == BulkType.PlusOne.id  ⇒ BulkType.PlusOne
