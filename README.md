@@ -1,3 +1,8 @@
+About
+=====
+
+Supporting samples for [a talk at MIPT](https://github.com/alexander-myltsev/mipt-hadoop-talk).
+
 Counting Sort Sample
 ====================
 
